@@ -13,3 +13,86 @@
  *= require_tree .
  *= require_self
  */
+
+.container {
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  text-align: center;
+  padding-top: 50px;
+  font-family: 'Oldenburg', cursive;
+  font-size: 1.5em;
+  color: #1F4172;
+}
+
+.sub-header {
+  text-align: center;
+  padding-top: 10px;
+  font-family: 'Oldenburg', cursive;
+  font-size: 1.5em;
+  color: #1F4172;
+}
+
+.card {
+  font-family: 'Oldenburg', cursive;
+  margin: 20px;
+}
+
+.card-header {
+  font-size: 2.0em;
+}
+
+.card-body {
+  height: 300px;
+  overflow: hidden;
+  background-color: #f7f0f0;
+}
+
+.card-title {
+  height: 40px;
+  overflow: hidden;
+}
+
+.card-text {
+  height: 190px;
+}
+
+.pink-button {
+  background-color: #F1B4BB;
+  width: auto;
+  border-style: none solid #F1B4BB;
+  border-radius: 10px;
+  padding: 10px;
+  color: #1F4172;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(255, 2, 2, 0.1);
+  font-family: 'Oldenburg', cursive;
+
+  &:hover {
+    background-color: #ec8d98;
+  }
+}
+
+.bottom-page-link {
+  font-family: 'Oldenburg', cursive;
+  padding-top: 20px;
+  padding-bottom: 50px;
+  font-size: 1.5em;
+
+  .link-text {
+    color: #1F4172;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.restaurant-info {
+  font-family: 'Oldenburg', cursive;
+  color: #1F4172;
+  font-size: 1.5em;
+}

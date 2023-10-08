@@ -1,20 +1,39 @@
-<h1><%= @restaurant.name %></h1>
-<hr>
-<p>Address: <%= @restaurant.address %></p>
-<p>Category: <%= @restaurant.category %></p>
-<p>Phone Number: <%= @restaurant.phone_number %></p>
-<p>Restaurant Reviews</p>
-<ul class="list-group">
-  <% @restaurant.reviews.each do |review| %>
-    <li>Rating: <%= review.rating %></li>
-    <li>Content: <%= review.content %></li>
-  <% end %>
-</ul>
-<%= link_to "Go back to main page", restaurants_path %>
-<hr>
-<h2>Add a review</h2>
-<%= simple_form_for [@restaurant, @review] do |f| %>
-  <%= f.input :rating %>
-  <%= f.input :content %>
-  <%= f.submit "Submit review", class: "btn btn-primary" %>
-<% end %>
+<div class="container">
+  <div class="row header">
+    <h1><%= @restaurant.name %></h1>
+  </div>
+  <hr>
+  <div class="row restaurant-info">
+    <p>Address: <%= @restaurant.address %></p>
+    <p>Category: <%= @restaurant.category %></p>
+    <p>Phone Number: <%= @restaurant.phone_number %></p>
+  </div>
+  <hr>
+  <div class="row justify-content-center">
+    <% @restaurant.reviews.each do |review| %>
+      <div class="col-md-6 mb-3">
+        <div class="card" style="width: 100%;">
+          <div class="card-header">
+            Rating: <%= review.rating %>/5
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><%= review.content %></li>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <hr>
+  <div class="row sub-header">
+    <h2>It's your turn to review <%= @restaurant.name %>!</h2>
+  </div>
+    <%= simple_form_for [@restaurant, @review] do |f| %>
+      <%= f.input :rating, as: :select, collection: 1..5 %>
+      <%= f.input :content %>
+      <%= f.button :submit, class: "pink-button" %>
+    <% end %>
+  <hr>
+  <div class="row bottom-page-link">
+    <%= link_to "Go back to main page", restaurants_path, class: 'link-text' %>
+  </div>
+</div>

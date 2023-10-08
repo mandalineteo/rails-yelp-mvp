@@ -1,23 +1,35 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+require 'faker'
 
-puts "Clearing database..."
+puts 'Clearing database...'
+Review.destroy_all
 Restaurant.destroy_all
+puts 'Finished clearing database'
 
-puts "Creating 5 restaurants..."
-pizza_hut = {name: "Pizza Hut", address: "Republic Plaza", category: "italian"}
-gong_cha = {name: "Gong Cha", address: "Somewhere in Raffles Place", category: "chinese"}
-omnivore = {name: "Omnivore", address: "Collyer Quay", category: "french"}
-old_chang_kee = {name: "Old Chang Kee", address: "Somehere in Raffles Place", category: "japanese"}
-chai_tea = {name: "Chai Tea", address: "Also in Collyer Quay", category: "belgian"}
+puts 'Creating 20 restaurants...'
 
-[pizza_hut, gong_cha, omnivore, old_chang_kee, chai_tea].each do |attributes|
-  restaurant = Restaurant.create!(attributes)
+restaurants = []
+
+20.times do
+  restaurant = Restaurant.create!(
+    name: Faker::Restaurant.name,
+    address: Faker::Address.full_address,
+    category: %w[Chinese Italian Japanese French Belgian].sample,
+    phone_number: rand(60_000_000..69_999_999).to_s,
+    description: Faker::Restaurant.description
+  )
+  restaurants << restaurant
   puts "Created #{restaurant.name}"
 end
-puts "Finished!"
+puts 'Finished creating 20 restaurants!'
+
+puts 'Creating reviews for restaurants...'
+restaurants.each do |restaurant|
+  5.times do
+    Review.create!(
+      restaurant:,
+      content: Faker::Restaurant.review,
+      rating: rand(1..5)
+    )
+  end
+  puts "Created reviews for #{restaurant.name}!"
+end

@@ -1,9 +1,33 @@
-<h1>List of restaurants</h1>
-<hr>
-<ul>
-  <% @restaurants.each do |restaurant| %>
-    <li><%= link_to restaurant.name, restaurant %></li>
-  <% end %>
-</ul>
-
-<%= link_to "Add a new restaurant", new_restaurant_path %>
+<div class="container">
+  <div class="row header">
+    <h1>♦️♣️ Hunger Deck ♠️♥️</h1>
+    <p>Hungry but unsure what/where to eat? Check out the deck of restaurant cards below!</p>
+  </div>
+  <hr>
+  <div class="row">
+    <% @restaurants.each do |restaurant| %>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+            <%= restaurant.category %>
+          </div>
+          <div class="card-body">
+            <div class="card-title">
+              <h5><%= restaurant.name %></h5>
+            </div>
+            <div class="card-text">
+              <p><%= restaurant.description.truncate(200) %></p>
+            </div>
+            <div class="card-link">
+              <%= link_to "Check out #{restaurant.name}!", restaurant_path(restaurant), class: "pink-button" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <hr>
+  <div class="row bottom-page-link">
+    <%= link_to "Unable to find a restaurant? Add it now!", new_restaurant_path, class: 'link-text' %>
+  </div>
+</div>

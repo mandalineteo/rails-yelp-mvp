@@ -1,8 +1,19 @@
-<%= simple_form_for(@restaurant) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :address %>
-  <%= f.input :category %>
-  <%= f.input :phone_number %>
-  <%= f.submit %>
-<% end %>
-<%= link_to "Go back to main page", restaurants_path %>
+<div class="container">
+  <div class="row header">
+    <h1>Add a new restaurant!</h1>
+    <p>Thank you for taking the time to add a new restaurant to our database! To help other users, kindly enter the details of the restaurant as accurately as possible 😊</p>
+  </div>
+  <hr>
+  <%= simple_form_for(@restaurant) do |f| %>
+    <%= f.input :category, as: :select, collection: ['Chinese', 'Italian', 'Japanese', 'French', 'Belgian'] %>
+    <%= f.input :name %>
+    <%= f.input :address %>
+    <%= f.input :phone_number %>
+    <%= f.input :description, as: :text %>
+    <%= f.button :submit, class: "pink-button" %>
+  <% end %>
+  <hr>
+  <div class="row bottom-page-link">
+      <%= link_to "Go back to main page", restaurants_path, class: 'link-text' %>
+  </div>
+</div>
